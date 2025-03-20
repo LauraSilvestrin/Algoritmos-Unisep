@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Gidole&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --darkest-gray: #22223b;
+    --medium-gray: #2D2D4E;
+    --ligth-gray: #4a4e694b;
+    --pink: #fb6f92;
+    --darkest-pink: #FA4C78;
+    --white: #eaf2d7;
+    --roboto-condensed: "Roboto Condensed", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    padding-top: 20px; 
+    background-color: var(--darkest-gray);
+    font-family: var(--roboto-condensed);
+    font-optical-sizing: auto;
+
+}
+
+a { 
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer; 
+}
+
+a:hover {
+    transition: color 0.3s ease;
+}
+hr{
+    margin: 30px 0 30px 0;
+}
+.content {
+    width: 80%; 
+    max-width: 1200px; 
+    margin: 20px 0 80px 0;
+    padding: 20px; 
+    background-color: var(--medium-gray);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    color: var(--white);
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dados{
+    display: flex;
+    flex-direction: row;
+    gap:10;
+    justify-content: space-around;
+}
+
+.dados fieldset{
+    width: 40%;
+}
+
+.perfil-div, .competencias-div, .experiencia-div, .formacao-div, .referencias-div{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.perfil-div p{
+text-align: justify;
+margin: 0 25px 0 25px;
+}
+
+fieldset{
+    padding: 10px 30px 10px 30px;
+    border: 2px solid var(--white);
+    border-radius: 8px;
+    transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+fieldset:hover {
+    transform: scale(1.001);
+    border: 2px solid var(--pink) !important; 
+    background-color: var(--ligth-gray);
+}
+fieldset:hover legend {
+    color: var(--pink);
+}
+
