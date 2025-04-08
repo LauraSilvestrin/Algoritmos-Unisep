@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>Lista de Tarefas</h1>
+        <div id="input-container">
+            <input type="text" id="task-input" placeholder="Digite uma tarefa">
+            <input type="date" id="date-input">
+            <select id="status-input">
+                <option value="Fazer">Fazer</option>
+                <option value="Fazendo">Fazendo</option>
+                <option value="Feito">Feito</option>
+            </select>
+            <button id="add-btn">Adicionar</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tarefa</th>
+                <th>Entrega</th>
+                <th>Status</th>
+                <th>Ações
+                    <div class="actions"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <div id="update-container" style="display: none;">
+        <input type="text" id="update-task-input" placeholder="Editar tarefa">
+        <input type="date" id="update-date-input">
+        <select id="update-status-input">
+            <option value="Fazer">Fazer</option>
+            <option value="Fazendo">Fazendo</option>
+            <option value="Feito">Feito</option>
+        </select>
+        <button id="update-btn">Atualizar</button>
+        <button id="cancel-btn">Cancelar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

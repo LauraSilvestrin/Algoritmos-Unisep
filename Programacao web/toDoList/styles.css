@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Gidole&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+body {
+    background-color: #313638;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+    padding-top: 20px;
+    color: aliceblue;
+}
+
+#input-container {
+    margin-bottom: 20px;
+}
+
+#task-input,
+#date-input,
+#update-task-input,
+#update-date-input,
+#status-input,
+#update-status-input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #424A4C;
+    color: aliceblue;
+}
+
+#task-input:focus,
+#date-input:focus,
+#update-task-input:focus,
+#update-date-input:focus,
+#status-input:focus,
+#update-status-input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.075),
+        0 0 8px rgba(102, 175, 233, 0.6);
+}
+::-webkit-input-placeholder, input[type="date"], select {
+    color: aliceblue;
+ }
+ 
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #66afe9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2b95eb;
+}
+
+table {
+    border-collapse: collapse;
+    width: 70%;
+    margin-bottom: 20px;
+    background-color: #879497;
+    border: 1px #879497 solid;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #555;
+}
+
+th {
+    background-color: #424A4C;
+    color: white;
+}
+
+#update-btn {
+    background-color: #2196F3;
+}
+
+#cancel-btn {
+    background-color: #f44336;
+    margin-left: 10px;
+}
+
+.edit-btn {
+    background-color: #66afe9;
+    color: aliceblue;
+}
+
+.edit-btn:hover {
+    background-color: #2b95eb;
+    color: aliceblue;
+}
+
+.delete-btn {
+    background-color: #e7717d;
+    margin-left: 10px;
+}
+.delete-btn:hover {
+    background-color: #dc3545;
+    margin-left: 10px;
+}
+
+#update-container {
+    display: none;
+    margin-top: 20px;
+    background-color: #879497;
+}
+
+tr[style*="opacity: 0.5"] td {
+    text-decoration: line-through;
+}   
+
+.actions{
+    display: flex;
+    justify-content: space-around;
+}
