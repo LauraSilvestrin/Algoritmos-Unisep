@@ -28,14 +28,21 @@ h1 {
 
 #input-container {
     margin-bottom: 20px;
+    display: flex;
+}
+.input-label{
+    display: flex;
+    flex-direction: column;
+    color: aliceblue;
+    justify-content: flex-start;
 }
 
 #task-input,
 #date-input,
 #update-task-input,
 #update-date-input,
-#status-input,
-#update-status-input {
+#priority-input,
+#update-priority-input {
     padding: 10px;
     font-size: 16px;
     margin-right: 10px;
@@ -49,8 +56,8 @@ h1 {
 #date-input:focus,
 #update-task-input:focus,
 #update-date-input:focus,
-#status-input:focus,
-#update-status-input:focus {
+#priority-input:focus,
+#update-priority-input:focus {
     border-color: #66afe9;
     outline: 0;
     box-shadow: inset 0 1px rgba(0, 0, 0, 0.075),
@@ -140,3 +147,7 @@ tr[style*="opacity: 0.5"] td {
     display: flex;
     justify-content: space-around;
 }
+
+/* .actions button{
+    width: 80px;
+} */

@@ -2,13 +2,13 @@
 const addBtn = document.getElementById("add-btn");
 const taskInput = document.getElementById("task-input");
 const dateInput = document.getElementById("date-input");
-const statusInput = document.getElementById("status-input");
+const priorityInput = document.getElementById("priority-input");
 
 const tableBody = document.getElementById("table-body");
 
 const updateTaskInput = document.getElementById("update-task-input");
 const updateDateInput = document.getElementById("update-date-input");
-const updateStatusInput = document.getElementById("update-status-input");
+const updatePriorityInput = document.getElementById("update-priority-input");
 
 const updateBtn = document.getElementById("update-btn");
 const cancelBtn = document.getElementById("cancel-btn");
@@ -21,9 +21,9 @@ let currentTaskId = null;
 function addTask() {
     const description = taskInput.value.trim();
     const dueDate = dateInput.value;
-    const status = statusInput.value;
+    const priority = priorityInput.value;
 
-    if (description && dueDate && status) {
+    if (description && dueDate && priority) {
         let id = 1;
         while (tasks.some(task => task.id === id)) {
             id++;
@@ -33,14 +33,15 @@ function addTask() {
             id: id,
             description: description,
             dueDate: dueDate,
-            status: status
+            priority: priority,
+            completed: false
         };
 
         tasks.push(newTask);
         localStorage.setItem('tasks', JSON.stringify(tasks));
         taskInput.value = '';
         dateInput.value = '';
-        statusInput.value = 'Fazer';
+        priorityInput.value = 'Baixa';
         renderTable();
     } else {
         alert("Preencha todos os campos!");
@@ -53,26 +54,25 @@ function showUpdateForm(taskId) {
     if (task) {
         updateTaskInput.value = task.description;
         updateDateInput.value = task.dueDate;
-        updateStatusInput.value = task.status;
+        updatePriorityInput.value = task.priority;
         currentTaskId = taskId;
         document.getElementById('update-container').style.display = 'block';
     }
     document.getElementById('update-container').scrollIntoView({ behavior: 'smooth' });
-
 }
 
 // Atualiza tarefa
 function updateTask() {
     const description = updateTaskInput.value.trim();
     const dueDate = updateDateInput.value;
-    const status = updateStatusInput.value;
+    const priority = updatePriorityInput.value;
 
-    if (description && dueDate && status) {
+    if (description && dueDate && priority) {
         const index = tasks.findIndex(task => task.id === currentTaskId);
         if (index !== -1) {
             tasks[index].description = description;
             tasks[index].dueDate = dueDate;
-            tasks[index].status = status;
+            tasks[index].priority = priority;
 
             localStorage.setItem('tasks', JSON.stringify(tasks));
             hideUpdateForm();
@@ -87,7 +87,7 @@ function updateTask() {
 function hideUpdateForm() {
     updateTaskInput.value = '';
     updateDateInput.value = '';
-    updateStatusInput.value = 'Fazer';
+    updatePriorityInput.value = 'Baixa';
     currentTaskId = null;
     document.getElementById('update-container').style.display = 'none';
 }
@@ -100,22 +100,27 @@ function deleteTask(taskId) {
     renderTable();
 }
 
+// Conclui tarefa
+function completeTask(id) {
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+        task.completed = true;
+        renderTable();
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+}
+
 // Renderiza a tabela de tarefas
 function renderTable() {
     tableBody.innerHTML = '';
 
-    const sortedTasks = tasks.slice().sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-
-        // Tarefas concluidas vão para o fim
-        if (a.status === "Feito" && b.status !== "Feito") return 1;
-        if (a.status !== "Feito" && b.status === "Feito") return -1;
-
-        return dateA - dateB;
+    tasks.sort((a, b) => {
+        if (a.completed && !b.completed) return 1;
+        if (!a.completed && b.completed) return -1;
+        return new Date(a.dueDate) - new Date(b.dueDate);
     });
 
-    sortedTasks.forEach(task => {
+    tasks.forEach(task => {
         const tr = document.createElement('tr');
 
         const idTd = document.createElement('td');
@@ -127,44 +132,42 @@ function renderTable() {
         const dateTd = document.createElement('td');
         dateTd.innerText = task.dueDate;
 
-        const statusTd = document.createElement('td');
-        statusTd.innerText = task.status;
+        const priorityTd = document.createElement('td');
+        priorityTd.innerText = task.priority;
 
         const actionsTd = document.createElement('td');
         const actionsDiv = document.createElement('div');
         const editBtn = document.createElement('button');
         const deleteBtn = document.createElement('button');
+        const completeBtn = document.createElement('button');
 
-        actionsDiv.className = 'actions';
+        completeBtn.innerText = 'Concluir';
         editBtn.innerText = 'Editar';
         deleteBtn.innerText = 'Excluir';
+
+        actionsDiv.className = 'actions';
+        completeBtn.className = 'complete-btn';
         editBtn.className = 'edit-btn';
         deleteBtn.className = 'delete-btn';
 
         editBtn.addEventListener('click', () => showUpdateForm(task.id));
         deleteBtn.addEventListener('click', () => deleteTask(task.id));
-
-        actionsTd.appendChild(actionsDiv)
+        completeBtn.addEventListener('click', () => completeTask(task.id));
+        
+        actionsDiv.appendChild(completeBtn);
         actionsDiv.appendChild(editBtn);
         actionsDiv.appendChild(deleteBtn);
+        actionsTd.appendChild(actionsDiv);
 
-        const today = new Date();
-        const dueDate = new Date(task.dueDate);
-        const timeDiff = dueDate - today;
-        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
-        if (task.status !== "Feito") {
-            if (daysDiff < 0) {
-                tr.style.backgroundColor = '#ffcccc'; 
-            } 
-        } else {
-            tr.style.opacity = "0.5"; // tarefa feita
+        if (task.completed) {
+            tr.style.opacity = '0.5';
+            tr.style.textDecoration = 'line-through';
         }
 
         tr.appendChild(idTd);
         tr.appendChild(descTd);
         tr.appendChild(dateTd);
-        tr.appendChild(statusTd);
+        tr.appendChild(priorityTd);
         tr.appendChild(actionsTd);
 
         tableBody.appendChild(tr);
