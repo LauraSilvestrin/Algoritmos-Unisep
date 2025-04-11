@@ -16,4 +16,5 @@ Uma aplicação web simples de lista de tarefas desenvolvida com **HTML**, **CSS
   - Tarefas excluídas são removidas da tela
 
 ![ToDo List com 3 tarefas](./imagens/atividade_concluida.png)
+
 ![ToDo List com 1 tarefa concluída](./imagens/atvidades_adicionadas.png)
