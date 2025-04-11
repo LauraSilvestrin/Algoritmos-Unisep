@@ -137,6 +137,9 @@ th {
     display: none;
     margin-top: 20px;
     background-color: #879497;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px aliceblue solid;
 }
 
 tr[style*="opacity: 0.5"] td {
@@ -148,6 +151,4 @@ tr[style*="opacity: 0.5"] td {
     justify-content: space-around;
 }
 
-/* .actions button{
-    width: 80px;
-} */
+
