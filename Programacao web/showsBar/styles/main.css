@@ -1,0 +1,38 @@
+body {
+  background-color: #121212;
+  color: #f8f9fa;
+}
+
+.bg-purple {
+  background-color: #6f42c1 !important;
+}
+
+.navbar-brand img {
+  height: 30px;
+  margin-right: 8px;
+}
+
+section {
+  padding: 60px 0;
+}
+
+.form-control,
+.form-control:focus,
+.form-select {
+  background-color: #1e1e1e;
+  color: #f8f9fa;
+  border-color: #6f42c1;
+}
+
+.form-control::placeholder {
+  color: #bcbcbc;
+}
+
+.btn-purple {
+  background-color: #6f42c1;
+  border: none;
+}
+
+.btn-purple:hover {
+  background-color: #5a32a3;
+}
