@@ -1,4 +1,5 @@
 Aplicação com JQuery e Firebase
+
 Criar uma landing page para uma empresa de eventos, Show´s Bar, deve conter um navbar superior com os links para as seções da pagina:
 - Serviços
 - Portfólio
