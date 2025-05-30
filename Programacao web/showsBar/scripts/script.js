@@ -17,6 +17,51 @@ function adicionar() {
         $("#perfil").val("");
 
         alert("Dados inseridos com sucesso!");
+        listar();
 
     });
+}
+
+function listar() {
+    $.get(`${urlBase}.json`, data => {
+
+        $("#lista").html("");
+
+        for (const id in data) {
+
+            const usuario = data[id];
+
+            $("#lista").append(`
+                <li class="list-group-item d-flex justify-content-between
+                align-items-center bg-purple text-white mb-3">
+
+                    <div>
+                        <strong>${usuario.nome} </strong> - ${usuario.idade} anos
+                    </div>
+                
+                    <div>
+                        <button class="btn btn-sm btn-warning me-2" 
+                        onclick="editar('${id}',
+                        '${usuario.nome}',
+                        '${usuario.idade}',
+                        '${usuario.perfil}'
+                        )">
+                        Editar
+                        </button>
+
+                        <button class="btn btn-sm btn-danger" 
+                        onclick="excluir('${id}')">
+                        Excluir
+                        </button>
+                    </div>
+
+                </li>
+                `);
+        }
+    });
+}
+
+$(document).ready(() => {
+    listar();
+});
 }
