@@ -77,4 +77,10 @@ function editar(id, nome, idade, perfil) {
         method: "PUT", data: dados, success: listar
     });
 }
+
+function excluir(id) {
+    $.ajax({
+        url: `${urlBase}/${id}.json`,
+        method: "DELETE", data: dados, success: listar
+    });
 }
