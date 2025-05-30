@@ -64,4 +64,17 @@ function listar() {
 $(document).ready(() => {
     listar();
 });
+
+function editar(id, nome, idade, perfil) {
+    const novoNome = prompt("Nome: ", nome);
+    const novaIdade = prompt("Idade: ", idade);
+    const novaPerfil = prompt("Perfil: ", perfil);
+
+    const dados = JSON.stringify({ nome: novoNome, idade: novaIdade, perfil: novaPerfil });
+
+    $.ajax({
+        url: `${urlBase}/${id}.json`,
+        method: "PUT", data: dados, success: listar
+    });
+}
 }
