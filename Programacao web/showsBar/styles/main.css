@@ -2,7 +2,24 @@ body {
   background-color: #121212;
   color: #f8f9fa;
 }
+html, body {
+  height: 100%;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+#lista li{
+  border: #ffff 1px solid;
+  border-radius: 8px;
+  background-color: #5a32a3;
+}
 .bg-purple {
   background-color: #6f42c1 !important;
 }
